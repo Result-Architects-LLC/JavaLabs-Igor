@@ -65,7 +65,7 @@ public class Good {
         this.weightPerUnitOfMeasure = weightPerUnitOfMeasure;
     }
     public String toString(){
-        return name + " " + modelNumber;
+        return name + " Model Number: " + modelNumber;
     }
 
     public double calculateVolume () {

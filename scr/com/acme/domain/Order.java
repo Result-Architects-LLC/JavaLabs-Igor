@@ -5,21 +5,21 @@ import com.acme.util.MyDate;
 public class Order {
     public static double taxRate;
 
-    MyDate orderDate;
-    double orderAmount = 0.00;
-    char orderJobSize;
-    double orderDiscountAmount = 0.00; 
-    double orderTaxAmount = 0.00;
-    double orderTotalAmount = 0.00;
-    String customer;
-    String product;
-    int quantity;
+    private MyDate orderDate;
+    private double orderAmount = 0.00;
+    private char orderJobSize;
+    private double orderDiscountAmount = 0.00;
+    private double orderTaxAmount = 0.00;
+    private double orderTotalAmount = 0.00;
+    private String customer;
+    private Good product;
+    private int quantity;
 
     {taxRate = 0.05;
     }
 
 
-    public Order(MyDate d, double amt, String c, String p, int q){
+    public Order(MyDate d, double amt, String c, Good p, int q){
         orderDate=d;
         orderAmount=amt;
         customer=c;
@@ -29,10 +29,6 @@ public class Order {
         computeDiscount();
         computeTax();
         computeTotal();
-    }
-
-    public Order(MyDate d, double amt, String c){
-        this(d,amt, c, "Anvil", 1);
     }
 
     public String toString(){
@@ -103,4 +99,7 @@ public class Order {
         }
     }
 
+    public Good getProduct() {
+        return product;
+    }
 }

@@ -35,4 +35,17 @@ public class MyDate {
     public void  printMyDate () {
         System.out.println("Day: "+ day + " Month: " + month + " Year: " + year);
     }
+
+    public String toString() {
+        return ("Year " + year + " Month " + month + " Day " + day);
+    }
+
+    public boolean equals (Object o) {
+    if (o instanceof MyDate) {
+        MyDate d = (MyDate) o;
+        if ((d.day == day) && (d.month == month) && (d.year == year)) {
+            return true;}
+        }
+        return false;
+    }
 }
