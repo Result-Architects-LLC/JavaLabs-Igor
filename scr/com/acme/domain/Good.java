@@ -1,11 +1,11 @@
 package com.acme.domain;
 
-public class Good {
+public abstract class Good {
     private String name;
     private int modelNumber;
     private double height;
     private  UnitOfMeasureType UnitOfMeasure;
-    private boolean flammable = true;
+    private boolean flammable;
     private double weightPerUnitOfMeasure;
 
     public void setName(String name) {
@@ -68,9 +68,7 @@ public class Good {
         return name + " Model Number: " + modelNumber;
     }
 
-    public double calculateVolume () {
-        return 0.0;
-    }
+    public abstract double calculateVolume ();
 
     public double calculateWeight () {
         return calculateVolume()*weightPerUnitOfMeasure;
