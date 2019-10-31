@@ -12,14 +12,14 @@ public class Order {
     private double orderTaxAmount = 0.00;
     private double orderTotalAmount = 0.00;
     private String customer;
-    private Good product;
+    private Product product;
     private int quantity;
 
     {taxRate = 0.05;
     }
 
 
-    public Order(MyDate d, double amt, String c, Good p, int q){
+    public Order(MyDate d, double amt, String c, Product p, int q){
         orderDate=d;
         orderAmount=amt;
         customer=c;
@@ -99,7 +99,7 @@ public class Order {
         }
     }
 
-    public Good getProduct() {
+    public Product getProduct() {
         return product;
     }
 }

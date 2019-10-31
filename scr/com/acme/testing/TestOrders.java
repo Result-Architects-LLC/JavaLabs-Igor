@@ -39,6 +39,12 @@ public class TestOrders {
         Order glueOrder = new Order(date3, 200, "Road Runner", glue,12);
         glueOrder.printOrderObject();
 
+        MyDate date4 = new MyDate(4, 10, 2019);
+        Service rrEradication = new Service("Road Runnuer Eradication", 22, false);
+
+        Order rrEradicationOder = new Order(date4, 2000, "Duffy Duck", rrEradication,1);
+        rrEradicationOder.printOrderObject();
+
     }
 
 }

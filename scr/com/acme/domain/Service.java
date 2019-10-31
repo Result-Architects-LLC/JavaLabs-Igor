@@ -1,6 +1,6 @@
 package com.acme.domain;
 
-public class Service {
+public class Service implements Product {
     private String name;
     private int estimatedTaskDuration;
     private boolean timeAndMaterials;

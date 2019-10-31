@@ -1,6 +1,7 @@
 package com.acme.domain;
 
-public abstract class Good {
+public abstract class Good implements Product {
+
     private String name;
     private int modelNumber;
     private double height;
