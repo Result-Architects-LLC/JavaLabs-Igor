@@ -1,9 +1,6 @@
 package com.acme.testing;
 
-import com.acme.domain.Liquid;
-import com.acme.domain.Order;
-import com.acme.domain.Solid;
-import com.acme.domain.UnitOfMeasureType;
+import com.acme.domain.*;
 import com.acme.util.MyDate;
 
 public class TestOrders {
@@ -41,20 +38,6 @@ public class TestOrders {
                 false, 1, 6);
         Order glueOrder = new Order(date3, 200, "Road Runner", glue,12);
         glueOrder.printOrderObject();
-// the code below casts product as Solid although it is Liquid. When executed, this code throws a runtime exception.
-
-            System.out.println("Length: " + ((Solid) glueOrder.getProduct()).getLength());
-
-//        System.out.println("The tax Rate is currently: " + Order.taxRate);
-//        Order.computeTaxOn(3000.00);
-//        anvil.computeTax();
-//        balloons.computeTax();
-//        Order.setTaxRate(0.06);
-//        System.out.println("The tax Rate is currently: " + Order.taxRate);
-//        Order.computeTaxOn(3000.00);
-//        anvil.computeTax();
-//        balloons.computeTax();
-
 
     }
 
