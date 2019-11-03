@@ -2,6 +2,8 @@ package com.acme.domain;
 
 import com.acme.util.MyDate;
 
+import java.util.PriorityQueue;
+
 public class Order {
     public static double taxRate;
 
@@ -14,6 +16,7 @@ public class Order {
     private String customer;
     private Product product;
     private int quantity;
+    private  static Rushable rushable;
 
     {taxRate = 0.05;
     }
@@ -98,8 +101,24 @@ public class Order {
             orderTotalAmount = orderAmount - orderDiscountAmount;
         }
     }
+public boolean isPriorityOrder () {
+        boolean priorityOrder;
+         priorityOrder = rushable.isRushable(orderDate, orderAmount);
+//        if (rushable != null) {
+//        priorityOrder = rushable.isRushable(orderDate, orderAmount);
+//    }
+        return priorityOrder;
+    }
 
     public Product getProduct() {
         return product;
+    }
+
+    public static void setRushable(Rushable rushable) {
+       Order.rushable = rushable;
+    }
+
+    public static Rushable getRushable() {
+        return rushable;
     }
 }
