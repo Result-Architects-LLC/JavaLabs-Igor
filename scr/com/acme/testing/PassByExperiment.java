@@ -4,9 +4,6 @@ import com.acme.util.MyDate;
 
 public class PassByExperiment {
 
-    public static void passObject (MyDate d){
-        d.year = 2019;
-    }
     public static void passPrimitive (int i) {
         i = 2029;
     }

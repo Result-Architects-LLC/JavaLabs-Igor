@@ -11,11 +11,18 @@ public class TestOrders {
      */
     public static void main(String[] args) {
 
+        // I am a little unclear about Lambda so below is my best explanation for myself
+        // Rushable is an interface and I need to declare a reference variable whose type is interface.
         Rushable myRushable;
-        myRushable = (myDate, amount) -> {if (amount > 1500) return true; else return false;};
+        // Next, I use myRushable reference variable whose type is interface to specify Lambda;
+        // At this point isRushable method inside Rushable functional interface is still not defined; still abstract.
+        myRushable = (myDate, amount) -> ((amount > 1500) || myDate.daysBetweenTodayAndMyDate()>30);
+        // Now, I set private  static Rushable rushable variable to myRushable for class Order.
+        // Note, that rushable is a static variable so for all objects of class Order rushable is set to my Lambda expression above;
+        // Question: why does Order not "implement" Rushable interface? When would it be appropriate?
         Order.setRushable(myRushable);
 
-        MyDate date1 = new MyDate(1,20,2008);
+        MyDate date1 = new MyDate(1,1,2016);
         Solid anvil = new Solid("Acme Anvil", 1668, 0.3, UnitOfMeasureType.CUBIC_METER, false, 5000, 0.5, 0.5);
         Order anvilOrder = new Order(date1, 2000.00, "Wile E Coyote",anvil, 10);
         anvilOrder.printOrderObject();
@@ -40,16 +47,16 @@ public class TestOrders {
         System.out.println("Volume: " + balloons.calculateVolume());
         System.out.println(balloonsOrder.getProduct().getName() +" is Priority order " + balloonsOrder.isPriorityOrder());
 
-        MyDate date3 = new MyDate(5, 20, 2008);
+        MyDate date3 = new MyDate(1, 2, 2020);
         Liquid glue = new Liquid("Acme Glue", 2334, 4, UnitOfMeasureType.LITER,
                 false, 1, 6);
         Order glueOrder = new Order(date3, 200, "Road Runner", glue,12);
         glueOrder.printOrderObject();
 
-        MyDate date4 = new MyDate(4, 10, 2019);
+        MyDate date4 = new MyDate(25, 12, 2016);
         Service rrEradication = new Service("Road Runner Eradication", 22, false);
 
-        Order rrEradicationOder = new Order(date4, 2000, "Duffy Duck", rrEradication,1);
+        Order rrEradicationOder = new Order(date4, 200, "Duffy Duck", rrEradication,1);
         rrEradicationOder.printOrderObject();
 
     }

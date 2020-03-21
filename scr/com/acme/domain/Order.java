@@ -2,13 +2,12 @@ package com.acme.domain;
 
 import com.acme.util.MyDate;
 
-import java.util.PriorityQueue;
-
 public class Order {
     public static double taxRate;
+    private  static Rushable rushable;
 
     private MyDate orderDate;
-    private double orderAmount = 0.00;
+    private double orderAmount;
     private char orderJobSize;
     private double orderDiscountAmount = 0.00;
     private double orderTaxAmount = 0.00;
@@ -16,22 +15,26 @@ public class Order {
     private String customer;
     private Product product;
     private int quantity;
-    private  static Rushable rushable;
+
 
     {taxRate = 0.05;
     }
 
 
     public Order(MyDate d, double amt, String c, Product p, int q){
-        orderDate=d;
-        orderAmount=amt;
-        customer=c;
-        product=p;
-        quantity=q;
-        determineJobSize();
-        computeDiscount();
-        computeTax();
-        computeTotal();
+        if (MyDate.isHoliday(d))
+        {System.out.println("Order date, " + d + " , can not be set to a holiday!");
+        d.setDate(1,1,2020);}
+
+            orderDate = d;
+            orderAmount = amt;
+            customer = c;
+            product = p;
+            quantity = q;
+            determineJobSize();
+            computeDiscount();
+            computeTax();
+            computeTotal();
     }
 
     public String toString(){
@@ -44,7 +47,7 @@ public class Order {
     }
 
     public void printOrderObject(){
-        System.out.println("The order date is " + this.orderDate.month + "/" + this.orderDate.day + "/" + this.orderDate.year);
+        System.out.println("The order date is " + this.orderDate.getMonth() + "/" + this.orderDate.getDay() + "/" + this.orderDate.getYear());
         System.out.println("The order amount is " + this.orderAmount);
         System.out.println("The order customer is " + this.customer);
         System.out.println("The order product is " + this.product);
@@ -54,6 +57,7 @@ public class Order {
         System.out.println("The tax rate is " + Order.taxRate);
         System.out.println("The tax amount is " + this.orderTaxAmount);
         System.out.println("Your total amount is " + this.orderTotalAmount);
+        System.out.println("Priority order? " + this.isPriorityOrder());
     }
     private void determineJobSize() {
         
@@ -104,9 +108,6 @@ public class Order {
 public boolean isPriorityOrder () {
         boolean priorityOrder;
          priorityOrder = rushable.isRushable(orderDate, orderAmount);
-//        if (rushable != null) {
-//        priorityOrder = rushable.isRushable(orderDate, orderAmount);
-//    }
         return priorityOrder;
     }
 

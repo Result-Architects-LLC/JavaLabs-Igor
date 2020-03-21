@@ -1,10 +1,16 @@
 package com.acme.util;
 
+import java.time.LocalDate;
+
+import static java.time.temporal.ChronoUnit.DAYS;
+
 public class MyDate {
 
-    public int day;
-    public int month;
-    public int year;
+    private int day;
+    private int month;
+    private int year;
+
+    private static MyDate [] holidays;
 
     public MyDate(int day, int month, int year) {
 
@@ -36,8 +42,42 @@ public class MyDate {
         System.out.println("Day: "+ day + " Month: " + month + " Year: " + year);
     }
 
+    public long daysBetweenTodayAndMyDate() {
+        // this method returns the number of days between LocalDate.now and MyDate that it implicitly receives as a parameter
+        LocalDate orderDate = LocalDate.of(this.year, this.month, this.day);
+        return DAYS.between(orderDate,LocalDate.now());
+    }
+
     public String toString() {
         return ("Year " + year + " Month " + month + " Day " + day);
+    }
+
+    public static MyDate[] getHolidays() {
+        return holidays;
+    }
+    public static boolean isHoliday(MyDate proposedDate) {
+        for (MyDate tHoliday : holidays)
+        {if (tHoliday.equals(proposedDate)) return true;}
+            return false;
+    }
+
+    static {
+        holidays = new MyDate[6];
+        MyDate newYearsDate = new MyDate(1, 1, 2016);
+        holidays[0] = newYearsDate;
+        MyDate laborDay = new MyDate(5,9,2016);
+        holidays[1]= laborDay;
+        MyDate memorialDay = new MyDate(30, 5, 2016);
+        holidays[2] = memorialDay;
+        MyDate thanksgiving = new MyDate(24, 11,2016);
+        holidays[3] = thanksgiving;
+        holidays[4] = new MyDate(4, 7, 2016);
+        holidays[5] = new MyDate(25, 12, 2016);
+    }
+
+    public static void printHolidays () {
+        System.out.println("The company holidays are:");
+        for (MyDate holiday : holidays) holiday.printMyDate();
     }
 
     public boolean equals (Object o) {
@@ -47,5 +87,17 @@ public class MyDate {
             return true;}
         }
         return false;
+    }
+
+    public int getDay() {
+        return day;
+    }
+
+    public int getMonth() {
+        return month;
+    }
+
+    public int getYear() {
+        return year;
     }
 }
