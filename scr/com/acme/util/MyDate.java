@@ -52,25 +52,18 @@ public class MyDate {
         return ("Year " + year + " Month " + month + " Day " + day);
     }
 
-    public static MyDate[] getHolidays() {
-        return holidays;
-    }
     public static boolean isHoliday(MyDate proposedDate) {
-        for (MyDate tHoliday : holidays)
-        {if (tHoliday.equals(proposedDate)) return true;}
+        for (MyDate holiday : holidays)
+        {if (proposedDate.equals(holiday)) return true;}
             return false;
     }
 
     static {
         holidays = new MyDate[6];
-        MyDate newYearsDate = new MyDate(1, 1, 2016);
-        holidays[0] = newYearsDate;
-        MyDate laborDay = new MyDate(5,9,2016);
-        holidays[1]= laborDay;
-        MyDate memorialDay = new MyDate(30, 5, 2016);
-        holidays[2] = memorialDay;
-        MyDate thanksgiving = new MyDate(24, 11,2016);
-        holidays[3] = thanksgiving;
+        holidays[0] = new MyDate(1, 1, 2016);
+        holidays[1]= new MyDate(5,9,2016);
+        holidays[2] = new MyDate(30, 5, 2016);
+        holidays[3] = new MyDate(24, 11,2016);
         holidays[4] = new MyDate(4, 7, 2016);
         holidays[5] = new MyDate(25, 12, 2016);
     }
