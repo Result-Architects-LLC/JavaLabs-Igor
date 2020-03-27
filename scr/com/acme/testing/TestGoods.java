@@ -34,12 +34,12 @@ public class TestGoods {
         System.out.println(paint + " can ship via Post office? " + paint.canShipViaPostOffice());
 
         System.out.println("Catalog v1 " + Good.getCatalog());
-        Good.getCatalog().remove(1);
+        Good.getCatalog().remove(paint);
         System.out.println("Catalog v2 " + Good.getCatalog());
         Solid toaster = new Solid("Acme Toaster", 1755, 0.75, UnitOfMeasureType.CUBIC_FOOT, true, 1, 1, 1);
         Good.getCatalog().add(toaster);
         System.out.println("Catalog v3 " + Good.getCatalog());
-        Good.getCatalog().add(0, toaster);
+        Good.getCatalog().add(toaster);
         System.out.println("Catalog v4 " + Good.getCatalog());
 
         System.out.println("Flammable products " + Good.getFlamablesList());
