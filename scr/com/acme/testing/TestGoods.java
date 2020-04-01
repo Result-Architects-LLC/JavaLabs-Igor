@@ -5,6 +5,10 @@ import com.acme.domain.Liquid;
 import com.acme.domain.UnitOfMeasureType;
 import com.acme.domain.Solid;
 
+import java.util.Collections;
+import java.util.List;
+import java.util.Set;
+
 public class TestGoods {
 
     public static void main(String[] args) {
@@ -41,6 +45,7 @@ public class TestGoods {
         System.out.println("Catalog v3 " + Good.getCatalog());
         Good.getCatalog().add(toaster);
         System.out.println("Catalog v4 " + Good.getCatalog());
+        System.out.println("Catalog v5 " + Good.getCatalog());
 
         System.out.println("Flammable products " + Good.getFlamablesList());
     }

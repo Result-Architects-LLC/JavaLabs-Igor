@@ -2,7 +2,7 @@ package com.acme.domain;
 
 import java.util.*;
 
-public abstract class Good implements Product {
+public abstract class Good implements Product,Comparable<Good> {
 
     private String name;
     private int modelNumber;
@@ -11,11 +11,8 @@ public abstract class Good implements Product {
     private boolean flammable;
     private double weightPerUnitOfMeasure;
 
-    public static void setCatalog(Set catalog) {
-        Good.catalog = catalog;
-    }
+    private static TreeSet<Good> catalog;
 
-    private static Set catalog;
     static Liquid glue = new Liquid("Acme Glue", 2334, 4, UnitOfMeasureType.LITER,false, 15, 6);
     static Liquid paint = new Liquid("Acme Invisible Paint", 2490, 0.65,UnitOfMeasureType.GALLON, true, 0.70, 12);
     static Solid anvil = new Solid("Acme Anvil", 1668, 0.3,UnitOfMeasureType.CUBIC_METER, false, 500, 0.25, 0.3);
@@ -26,12 +23,12 @@ public abstract class Good implements Product {
     static Liquid oil = new Liquid("Acme Oil", 4275, 1.0,UnitOfMeasureType.CUBIC_METER, true, 1.5, 0.25);
 
 
-    public static Set getCatalog() {
+    public static TreeSet<Good> getCatalog() {
         return catalog;
     }
 
     public static Set getFlamablesList() {
-        Set flamables = new HashSet();
+        Set<Good> flamables = new HashSet<>();
         Iterator i = Good.getCatalog().iterator();
         while (i.hasNext()){
             Good x = (Good) i.next();
@@ -42,7 +39,7 @@ public abstract class Good implements Product {
 
     static {
 
-        catalog = new HashSet();
+        catalog = new TreeSet<>();
         catalog.add(glue);
         catalog.add(paint);
         catalog.add(anvil);
@@ -121,5 +118,9 @@ public abstract class Good implements Product {
 
     public final boolean canShipViaPostOffice() {
         return !isFlammable() & calculateWeight() < 200;
+    }
+
+    public int compareTo(Good o) {
+           return getModelNumber() - (o.getModelNumber());
     }
 }
